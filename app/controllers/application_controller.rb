@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
-  	def authorize
-  		redirect_to login_url, alert: "Not authroized" if current_user.nil?
-  	end
   	
 	private
+    def authorize
+      redirect_to login_url, alert: "Not authroized" if current_user.nil?
+    end
+
   	def current_user
     	@current_user ||= User.find(session[:user_id]) if session[:user_id]
   	end
